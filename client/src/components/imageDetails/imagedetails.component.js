@@ -1,7 +1,9 @@
 import React from 'react';
-export const ImageDetails = ({ data }) => {
+export const ImageDetails = ({ data, selected }) => {
     return (
         <div>
+            <label><b>Selected image:</b> {selected.split('/').pop()}</label>
+            <br/>
             <label><b>File Data</b></label>
             <table>
                 <thead>

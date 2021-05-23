@@ -42,7 +42,6 @@ export default function App() {
             },
             })
             .then((res) => {
-                console.log("response getImageData:", res.data);
                 setImgData(res.data);
             })
     }
@@ -61,7 +60,7 @@ export default function App() {
                   </div>
                   <div className="padding">
                     {JSON.stringify(imgData) !== "{}" ? 
-                      <ImageDetails data={imgData}/>
+                      <ImageDetails data={imgData} selected={imgpath}/>
                     : ""}
                   </div>
                   
