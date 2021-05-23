@@ -10,6 +10,7 @@ const getImageMetadata = async function (req, res) {
     
         try {
             const tags = ExifReader.load(data, {expanded: true});
+            console.log(tags)
             res.send(tags)
         } catch (error) {
     
