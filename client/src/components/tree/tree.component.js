@@ -38,14 +38,8 @@ const FILE_ICONS = {
     let ext = name.split(".")[2];
     return (
       <StyledFile>
-        {/* render the extension or fallback to generic file icon  */}
         {FILE_ICONS[ext] || <AiOutlineFile />}
-        <span onClick={() => toggle(path.replace(/\\/g, "/")) } >{name}</span>
-        {/*toggle === name ? (
-          <>
-            <img src={'./data/' + //path.replace(/\\/g, "/")} alt={toggle}/>
-          </>
-        ) : null*/}
+        <span style={{cursor:'pointer'}} onClick={() => toggle(path.replace(/\\/g, "/")) } >{name}</span>
         
       </StyledFile>
     );

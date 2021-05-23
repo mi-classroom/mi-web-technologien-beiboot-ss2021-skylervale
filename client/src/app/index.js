@@ -27,7 +27,6 @@ export default function App() {
     }
 
     const selectImg = (value) => {
-      console.log("value", value)
       if(value !== ""){
         setImgPath(value);
         getImageData(value);
