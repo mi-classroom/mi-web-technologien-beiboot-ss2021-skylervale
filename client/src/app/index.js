@@ -3,7 +3,8 @@ import axios from "axios";
 
 import { BrowserRouter as Router} from 'react-router-dom';
 import { NavBar } from '../components';
-import { Tree } from '../components/tree/tree';
+import { Tree } from '../components/tree/tree.component';
+import { ImageDetails } from '../components/imageDetails/imagedetails.component';
 import {path} from '../config/env.config';
 import '../style/style.css';
 
@@ -12,8 +13,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 export default function App() {
     const [imgpath, setImgPath] = useState("");
     const [structure, setStructure] = useState({});
+    const [imgData, setImgData] = useState({});
 
-    console.log("actual Structure", structure);
     const getStructure = () => {
         axios
             .get(`${path}/tree`, {
@@ -24,22 +25,51 @@ export default function App() {
                 setStructure(res.data.children);
             })
     }
+
+    const selectImg = (value) => {
+      console.log("value", value)
+      if(value !== ""){
+        setImgPath(value);
+        getImageData(value);
+      }
+      
+    }
+
+    const getImageData = (value) => {
+        axios
+            .get(`${path}/imgmetadata`, {
+            params: {
+              imgpath: value
+            },
+            })
+            .then((res) => {
+                console.log("response getImageData:", res.data);
+                setImgData(res.data);
+            })
+    }
+    
     useEffect(() => {
         getStructure();
     }, []);
+
     return (
         <Router>
             <NavBar />
             <div style={{ display:'flex'}}>
               <div style={{ width: '60rem'}}>
-                  <div className="tree">
-                      <Tree data={structure} toggle={setImgPath} />
+                  <div className="padding">
+                      <Tree data={structure} toggle={selectImg} />
+                  </div>
+                  <div className="padding">
+                    {JSON.stringify(imgData) !== "{}" ? 
+                      <ImageDetails data={imgData}/>
+                    : ""}
                   </div>
                   
               </div>
               <div style={{ width: '60rem'}}>
                 <div>
-                  <img src={'./data/' + imgpath.replace(/\\/g, "/") } alt={imgpath} className="image"/>
+                  <img src={'./data/' + imgpath } alt={imgpath} className="image"/>
                 </div>
               </div>
             </div>
@@ -48,3 +78,4 @@ export default function App() {
         </Router>
     );
 }
+

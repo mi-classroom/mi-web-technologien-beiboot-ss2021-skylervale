@@ -2,6 +2,19 @@
     width: 60rem;
     padding:5%
 }
-.tree {
-    padding: 5%;
+.padding {
+    padding: 3%;
+}
+table{
+    width: 100%;
+}
+table, th, td {
+    border: 1px solid black;
+}
+th{
+    background-color:cadetblue;
+    color: white;
+}
+td{
+    padding: 0.5rem;
 }
