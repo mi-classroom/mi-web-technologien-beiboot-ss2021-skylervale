@@ -6,7 +6,7 @@ const apiPort = 5000
 
 app.use(cors())
 
-app.use(express.static(__dirname + '/../data'));
+//app.use(express.static(__dirname + '../client/public/data'));
 
 //Generate Data folder tree
 const dree = require('dree');
@@ -18,14 +18,14 @@ const options = {
     normalize: false
   };
 
-const tree = dree.scan('../data', options);
+const tree = dree.scan('../client/public/data', options);
 
 
 app.get('/', (req, res) => {
     res.send('Welcome to PixtureBox')
 })
 
-app.get('/api', (req, res) => {
+app.get('/tree', (req, res) => {
     res.send(tree)
 })
 

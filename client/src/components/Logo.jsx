@@ -12,6 +12,7 @@ class Logo extends Component {
         return (
             <Wrapper>
                 <img src={logo} alt="" width="50" height="50" />
+                <label>Picture Box</label>
             </Wrapper>
         )
     }
