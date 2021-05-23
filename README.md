@@ -42,5 +42,5 @@ npm install
  ### Häufig verwendete npm-Skripte
 App im Entwicklungsmodus starten
 ```
-nmp run start
+npm start
 ```
