@@ -21,7 +21,6 @@ export default function App() {
             params: {},
             })
             .then((res) => {
-                console.log("structure:", res.data.children);
                 setStructure(res.data.children);
             })
     }
