@@ -14,6 +14,29 @@ export default function App() {
     const [imgpath, setImgPath] = useState("");
     const [structure, setStructure] = useState({});
     const [imgData, setImgData] = useState({});
+    const [filteredData,setFilteredData] = useState(structure);
+
+    const searchFunction = (searchText, structure) => {
+      if(searchText === ""){
+        setFilteredData(structure);
+      }
+      let result;
+      
+      for(let i = 0; i < structure.length; i++) {
+        if(structure[i].name.toLowerCase().includes(searchText)) {
+          return structure[i];
+        } else if(structure[i].children !== undefined) {
+          result = searchFunction(searchText, structure[i].children);
+          if(result){
+            setFilteredData([result]);
+            return result;
+          }
+        }
+      }
+      setFilteredData([]);
+      return null;
+    };
+    
 
     const getStructure = () => {
         axios
@@ -21,8 +44,8 @@ export default function App() {
             params: {},
             })
             .then((res) => {
-                console.log("structure:", res.data.children);
                 setStructure(res.data.children);
+                setFilteredData(res.data.children);
             })
     }
 
@@ -56,7 +79,12 @@ export default function App() {
             <div style={{ display:'flex'}}>
               <div style={{ width: '60rem'}}>
                   <div className="padding">
-                      <Tree data={structure} toggle={selectImg} />
+                      <label>Search:</label>
+                      <br></br>
+                      <input type="text" onChange={(event) =>searchFunction(event.target.value.toLowerCase(), structure)} />
+                  </div>
+                  <div className="padding">
+                      <Tree data={filteredData} toggle={selectImg} />
                   </div>
                   <div className="padding">
                     {JSON.stringify(imgData) !== "{}" ? 
