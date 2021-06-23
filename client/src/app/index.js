@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-
+import ReactJson from 'react-json-view';
 import { BrowserRouter as Router} from 'react-router-dom';
 import { NavBar } from '../components';
 import { Tree } from '../components/tree/tree.component';
@@ -47,7 +47,7 @@ export default function App() {
     }
 
     function filterTree(root, searchText) {
-        root.copied = copyNode(root); // create a copy of root
+        root.copied = copyNode(root);
         var filteredResult = root.copied;
 
         depthFirstTraversal(root, function(node, branch) {
@@ -131,8 +131,6 @@ export default function App() {
                 setJsonData({});
             })
     }
-
-    const PrettyPrintJson = ({data}) => (<div><pre>{JSON.stringify(data, null, 2) }</pre></div>);
     
     useEffect(() => {
         getStructure();
@@ -162,7 +160,7 @@ export default function App() {
               <div style={{ width: '60rem'}}>
                 <div className="padding">
                   {JSON.stringify(jsonData) !== "{}" ? 
-                    <PrettyPrintJson data={jsonData} />
+                    <ReactJson src={jsonData} collapsed={2}/>
                   : ""}
                   {imgpath !== "" ? 
                     <div className="imagecontainer">

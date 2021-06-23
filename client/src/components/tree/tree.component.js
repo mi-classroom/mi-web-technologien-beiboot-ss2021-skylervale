@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
-import { AiOutlineFile, AiOutlineFolder } from "react-icons/ai";
-import { AiFillFileImage } from "react-icons/ai";
+import { AiOutlineFile, AiOutlineFolder, AiFillFileImage } from "react-icons/ai";
+import { VscJson } from "react-icons/vsc";
 
 const FILE_ICONS = {
-    jpg: <AiFillFileImage />
+    jpg: <AiFillFileImage />,
+    json: <VscJson />
   };
   
   const StyledTree = styled.div`
@@ -35,7 +36,9 @@ const FILE_ICONS = {
   `; 
   
   const File = ({ name, path, toggle }) => {
-    let ext = name.split(".")[2];
+    var re = /(?:\.([^.]+))?$/;
+    let ext = re.exec(name)[1];
+    console.log(ext)
     return (
       <StyledFile>
         {FILE_ICONS[ext] || <AiOutlineFile />}
