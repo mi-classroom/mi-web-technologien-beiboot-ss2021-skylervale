@@ -65,6 +65,7 @@ const FILE_ICONS = {
   };
   
   const TreeRecursive = ({ data, toggle}) => {
+    console.log("data", data)
     // loop through the data
     if(data.length > 0){
       return data.map(item => {
@@ -88,7 +89,7 @@ const FILE_ICONS = {
           }
       });
     }else{
-      return ("No Folder")
+      return ("No result")
     }
   };
   export const Tree = ({ data, toggle }) => {

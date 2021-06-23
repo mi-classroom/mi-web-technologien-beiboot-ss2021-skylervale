@@ -32,57 +32,78 @@ export const ImageDetails = ({ data, selected }) => {
                 </tbody>
             </table>
             <br/>
-            <label><b>Exif Data</b></label>
-            <table>
-                <thead>
-                    <tr>
-                        <th style={{width:'20%'}}>Metadata</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Image Description</td>
-                        <td>{data.exif["ImageDescription"].description}</td>
-                    </tr>
-                    <tr>
-                        <td>Artist</td>
-                        <td>{data.exif["Artist"].description}</td>
-                    </tr>
-                    <tr>
-                        <td>Copyright</td>
-                        <td>{data.exif["Copyright"].description}</td>
-                    </tr>
-                </tbody>
-            </table>
+            
+            {data.exif ?
+                <div>
+                    <label><b>Exif Data</b></label>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style={{width:'20%'}}>Metadata</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Image Description</td>
+                                <td>
+                                    {data.exif["ImageDescription"] ?
+                                        data.exif["ImageDescription"].description
+                                    : ""}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Artist</td>
+                                <td>
+                                    {data.exif["Artist"] ?
+                                        data.exif["Artist"].description
+                                    : ""}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Copyright</td>
+                                <td>
+                                    {data.exif["Copyright"] ?
+                                        data.exif["Copyright"].description
+                                    : ""}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            : ""}
             <br/>
-            <label><b>Xmp Data</b></label>
-            <table>
-                <thead>
-                    <tr>
-                        <th style={{width:'20%'}}>Metadata</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>InstanceID</td>
-                        <td>{data.xmp["InstanceID"].description}</td>
-                    </tr>
-                    <tr>
-                        <td>Creator</td>
-                        <td>{data.xmp["creator"].description}</td>
-                    </tr>
-                    <tr>
-                        <td>Rights</td>
-                        <td>{data.xmp["rights"].description}</td>
-                    </tr>
-                    <tr>
-                        <td>Subject</td>
-                        <td>{data.xmp["subject"].description}</td>
-                    </tr>
-                </tbody>
-            </table>
+            {data.xmp ?
+                <div>
+                    <label><b>Xmp Data</b></label>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style={{width:'20%'}}>Metadata</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>InstanceID</td>
+                                <td>{data.xmp["InstanceID"].description}</td>
+                            </tr>
+                            <tr>
+                                <td>Creator</td>
+                                <td>{data.xmp["creator"].description}</td>
+                            </tr>
+                            <tr>
+                                <td>Rights</td>
+                                <td>{data.xmp["rights"].description}</td>
+                            </tr>
+                            <tr>
+                                <td>Subject</td>
+                                <td>{data.xmp["subject"].description}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            : ""}
         </div>
     );
 };
