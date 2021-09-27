@@ -2,16 +2,27 @@ import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import ReactJson from 'react-json-view';
 import { BrowserRouter as Router} from 'react-router-dom';
+import Collapsible from 'react-collapsible';
+import ImageView from 'react-single-image-viewer'
+
 import { NavBar } from '../components';
 import { Tree } from '../components/tree/tree.component';
 import { ImageDetails } from '../components/imageDetails/imagedetails.component';
+
 import {path} from '../config/env.config';
-import Button from '@material-ui/core/Button';
+import {useStyles} from '../config/usestyles.config';
 import '../style/style.css';
 
+import Button from '@material-ui/core/Button';
+import Input from "@material-ui/core/Input";
+import IconButton from '@material-ui/core/IconButton';
+import { AiOutlineDownload } from "react-icons/ai";
+
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-single-image-viewer/dist/index.css'
 
 export default function App() {
+    const classes = useStyles();
     const [imgpath, setImgPath] = useState("");
     const [structure, setStructure] = useState({});
     const [imgData, setImgData] = useState({});
@@ -70,7 +81,7 @@ export default function App() {
         return filteredResult;
     }
 
-    const searchFunction = (searchText, list) => {
+    const searchFunction = async (searchText, list) => {
           var filteredList = [];
           for(var i = 0, len = list.length; i < len; i++) {
               filteredList.push( filterTree(list[i], searchText) );
@@ -142,6 +153,18 @@ export default function App() {
                 imgpath:imgpath
           })
     }
+
+    const downloadzip = () => {
+        axios
+            .get(`${path}/download`, {
+            params: {
+              folderPath: "./data"
+            },
+            })
+            .then((res) => {
+                console.log(res.data)
+            })
+    }
     
     useEffect(() => {
         getStructure();
@@ -150,36 +173,54 @@ export default function App() {
     return (
         <Router>
             <NavBar />
-            <div style={{ display:'flex'}}>
-              <div style={{ width: '60rem'}}>
+            <div className={classes.root} style={{ display:'flex'}}>
+              <div style={{ width: '20rem'}}>
                   <div className="padding">
                       <label>Search:</label>
                       <br></br>
-                      <input type="text" onChange={(event) =>searchFunction(event.target.value.toLowerCase(), structure)} />
+                      <Input className={classes.search} type="text" onChange={(event) =>searchFunction(event.target.value.toLowerCase(), structure)} />
+                  </div>
+                  <div className="padding">
+                    {filteredData.length > 0 ?
+                      <IconButton 
+                          edge="start" 
+                          color="inherit"
+                          aria-label="Download"
+                          onClick={downloadzip}>
+                          <AiOutlineDownload/>
+                          <span className={classes.span}>Download folder</span>
+                      </IconButton>
+                    :""}
                   </div>
                   <div className="padding">
                       <Tree data={filteredData} toggle={selectElement} />
                   </div>
                   <div className="padding">
-                    {JSON.stringify(imgData) !== "{}" ? 
-                      <ImageDetails defaultData={imgData} selected={imgpath} data={updatedData} updateData={setUpdatedData}/>
-                    : ""}
-                    {JSON.stringify(imgData) !== "{}" ? 
-                    <Button onClick={saveMetaData} class="mybutton">
-                        <span>Save</span>
-                    </Button>
-                    : ""}
+                    
                   </div>
                   
               </div>
-              <div style={{ width: '60rem'}}>
-                <div className="padding">
+              <div style={{ width: '100rem'}}>
+                <div>
                   {JSON.stringify(jsonData) !== "{}" ? 
                     <ReactJson src={jsonData} collapsed={2}/>
                   : ""}
                   {imgpath !== "" ? 
-                    <div className="imagecontainer">
-                      <img src={'http://localhost:5000/data/' + imgpath } alt={imgpath} className="image"/>
+                    <div>
+                      <center>
+                        <ImageView src={'http://localhost:5000/data/' + imgpath }/>
+                      
+                        <Collapsible trigger="Image details">
+                          {JSON.stringify(imgData) !== "{}" ? 
+                            <ImageDetails defaultData={imgData} selected={imgpath} data={updatedData} updateData={setUpdatedData} classes={classes}/>
+                          : ""}
+                          {JSON.stringify(imgData) !== "{}" ? 
+                          <Button onClick={saveMetaData} className={classes.myButton}>
+                              <span>Save</span>
+                          </Button>
+                          : ""}
+                        </Collapsible>
+                      </center>
                     </div>
                   : ""}
                   

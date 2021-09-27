@@ -1,6 +1,5 @@
 const ExifReader = require('exifr');
 const exiftool = require("exiftool-vendored").exiftool;
-const fs = require('fs');
 
 const getImageMetadata = async function (req, res) {
     const { imgpath } = req.query;
@@ -8,10 +7,7 @@ const getImageMetadata = async function (req, res) {
     ExifReader.parse("data/"+imgpath, true)
     .then(output => {
         res.send(output)
-    })
-
-    
-    
+    })   
 }
 
 const setImageMetadata = async function (req, res) {

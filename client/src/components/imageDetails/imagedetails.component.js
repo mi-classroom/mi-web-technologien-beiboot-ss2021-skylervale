@@ -1,6 +1,6 @@
 import React from 'react';
 import Input from "@material-ui/core/Input";
-export const ImageDetails = ({ defaultData, selected, data, updateData }) => {
+export const ImageDetails = ({ defaultData, selected, data, updateData, classes }) => {
     const handleChange = (e) => {
         updateData({[e.target.name]: e.target.value})
     }
@@ -9,7 +9,6 @@ export const ImageDetails = ({ defaultData, selected, data, updateData }) => {
         <div>
             <label><b>Selected image:</b> {selected.split('/').pop()}</label>
             <br/>
-            <label><b>File Data</b></label>
             <table>
                 <thead>
                     <tr>
@@ -25,7 +24,7 @@ export const ImageDetails = ({ defaultData, selected, data, updateData }) => {
                                     {key}
                                 </td>
                                 <td>
-                                    <Input name={key} value={typeof value === 'object' ? value['value'] : value}
+                                    <Input className={classes.details} name={key} value={typeof value === 'object' ? value['value'] : value}
                                            onChange={handleChange} />
                                 </td>
                             </tr>

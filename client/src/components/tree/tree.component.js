@@ -96,7 +96,7 @@ const FILE_ICONS = {
   export const Tree = ({ data, toggle }) => {
       return (
           <StyledTree>
-          {data ? <TreeRecursive data={data} toggle={toggle} /> : null}
+            {data ? <TreeRecursive data={data} toggle={toggle} /> : null}
           </StyledTree>
       );
   };
