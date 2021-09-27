@@ -38,7 +38,6 @@ const FILE_ICONS = {
   const File = ({ name, path, toggle }) => {
     var re = /(?:\.([^.]+))?$/;
     let ext = re.exec(name)[1];
-    console.log(ext)
     return (
       <StyledFile>
         {FILE_ICONS[ext] || <AiOutlineFile />}
@@ -68,7 +67,6 @@ const FILE_ICONS = {
   };
   
   const TreeRecursive = ({ data, toggle}) => {
-    console.log("data", data)
     // loop through the data
     if(data.length > 0){
       return data.map(item => {

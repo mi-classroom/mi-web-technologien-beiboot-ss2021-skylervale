@@ -9,7 +9,7 @@ const options = {
   };
 
 const getTree = async function (req, res) {
-    const tree = dree.scan('../client/public/data', options);
+    const tree = dree.scan('./data', options);
     if (tree) {
         res.send(tree);
     }

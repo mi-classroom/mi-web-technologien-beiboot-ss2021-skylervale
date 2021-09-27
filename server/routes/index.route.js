@@ -5,12 +5,15 @@ const imageController = require('../controllers/image_metadata.controller');
 const jsonController = require('../controllers/json_data.controller');
 
 router.route('/tree')
-    .get(treeController.getTree)
+    .get(treeController.getTree);
 
 router.route('/imgmetadata')
-    .get(imageController.getImageMetadata)
+    .get(imageController.getImageMetadata);
+
+router.route('/updateimgmetadata')
+    .post(imageController.setImageMetadata);
 
 router.route('/jsondata')
-    .get(jsonController.getJsonData)
+    .get(jsonController.getJsonData);
 
 module.exports = router;

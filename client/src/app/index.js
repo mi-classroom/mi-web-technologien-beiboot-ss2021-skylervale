@@ -6,6 +6,7 @@ import { NavBar } from '../components';
 import { Tree } from '../components/tree/tree.component';
 import { ImageDetails } from '../components/imageDetails/imagedetails.component';
 import {path} from '../config/env.config';
+import Button from '@material-ui/core/Button';
 import '../style/style.css';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -16,6 +17,7 @@ export default function App() {
     const [imgData, setImgData] = useState({});
     const [jsonData, setJsonData] = useState({});
     const [filteredData,setFilteredData] = useState(structure);
+    const [updatedData, setUpdatedData] = useState({})
 
     var currentPath = [];
 
@@ -95,8 +97,8 @@ export default function App() {
         if(value.indexOf(".json") > 0){
           getJsonData(value);
         }else if(value.indexOf(".dzi") > 0){
-
         }else{
+          console.log(value)
           setImgPath(value);
           getImageData(value);
         }
@@ -127,9 +129,18 @@ export default function App() {
             },
             })
             .then((res) => {
+                console.log(res.data)
                 setImgData(res.data);
                 setJsonData({});
             })
+    }
+
+    const saveMetaData = () => {
+      axios
+          .post(`${path}/updateimgmetadata`, {
+                params: updatedData,
+                imgpath:imgpath
+          })
     }
     
     useEffect(() => {
@@ -151,9 +162,13 @@ export default function App() {
                   </div>
                   <div className="padding">
                     {JSON.stringify(imgData) !== "{}" ? 
-                      <ImageDetails data={imgData} selected={imgpath}/>
+                      <ImageDetails defaultData={imgData} selected={imgpath} data={updatedData} updateData={setUpdatedData}/>
                     : ""}
-                    
+                    {JSON.stringify(imgData) !== "{}" ? 
+                    <Button onClick={saveMetaData} class="mybutton">
+                        <span>Save</span>
+                    </Button>
+                    : ""}
                   </div>
                   
               </div>
@@ -164,7 +179,7 @@ export default function App() {
                   : ""}
                   {imgpath !== "" ? 
                     <div className="imagecontainer">
-                      <img src={'./data/' + imgpath } alt={imgpath} className="image"/>
+                      <img src={'http://localhost:5000/data/' + imgpath } alt={imgpath} className="image"/>
                     </div>
                   : ""}
                   
