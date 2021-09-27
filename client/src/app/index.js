@@ -174,7 +174,7 @@ export default function App() {
         <Router>
             <NavBar />
             <div className={classes.root} style={{ display:'flex'}}>
-              <div style={{ width: '20rem'}}>
+              <div style={{ 'width': '20rem', 'max-height': '85vh', 'overflow': 'auto' }}>
                   <div className="padding">
                       <label>Search:</label>
                       <br></br>

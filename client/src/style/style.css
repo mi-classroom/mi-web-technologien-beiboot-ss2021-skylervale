@@ -45,11 +45,17 @@ img {
     text-align: center;
     width: inherit;
     background-color: #434343;
-    padding: 2% 16%;
+    padding: 2% 25%;
+    margin: 0% 0%;
+    max-height: 50vh;
+    overflow: auto;
 }
 .MuiInput-underline:before{
     border-bottom: 1px solid rgb(187, 137, 10) !important;
 }
 .MuiInput-underline:after{
     border-bottom: 1px solid rgb(187, 137, 10) !important;
+}
+.sc-eCApnc.cbFueE {
+    cursor: pointer;
 }
