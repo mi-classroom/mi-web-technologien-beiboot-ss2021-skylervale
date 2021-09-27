@@ -7,40 +7,40 @@ Als organisatorischen Rahmen für das Projekt nutzen wir GitHub Classroom. Inhal
 
 Diese Anwendung kann mit oder ohne Docker verwendet werden.
 
-### Entwicklungsumgebung (mit Docker)
-Wenn Sie Docker nicht installiert haben, [installieren Sie es von hier](https://docs.docker.com/get-docker/).
+### Development environment (with Docker)
+If you do not have Docker installed, [install it from here](https://docs.docker.com/get-docker/).
 
-### Einrichtung (mit Docker)
-1. Сlonen Sie dieses Repository. 
-2. Öffnen Sie Ihr Terminal und **cd** in das Verzeichnis des Repositorys.
-3. Führen Sie den folgenden Befehl aus, um ein Image zu erstellen:
+### Setup (with Docker)
+1. Сlone this repository.  
+2. Open your terminal and **cd** into the repository directory.
+3. Run the following command to create an image:
 ```
 docker build
 ```
 
-### Start (mit Docker)
-1. Starten Sie Ihr Image als Container
+### Start (with Docker)
+1. Start your image as a container
 ```
 Docker run 
 ```
-2. Besuchen Sie Ihre Anwendung in einem Browser unter http://localhost:3000/.
-3. Stoppen Sie den laufenden Container
+2. Visit your application in a browser at http://localhost:3000/.
+3. Stop the running container
 ```
 docker stop 
 ```
-### Entwicklungsumgebung (ohne Docker)
-Wenn Sie Node.js nicht installiert haben, [installieren Sie es von hier](https://nodejs.org/en/).
+### Development environment (without Docker)
+If you do not have Node.js installed, [install it from here](https://nodejs.org/en/).
 Sie benötigen Node.js Version 10.13 oder höher.
 
-### Einrichtung (ohne Docker)
-1. Сlone dieses Repository. 
-2. Öffnen Sie Ihr Terminal und **cd** in das Verzeichnis des Repositorys (client & server).
-3. Führen Sie den folgenden Befehl aus, um npm-Pakete einzurichten:
+### Setup (without Docker)
+1. Сlone this repository. 
+2. Open your terminal and **cd** to the directory of the repository (client & server).
+3. Run the following command to set up npm packages:
 ```
 npm install
 ```
- ### Häufig verwendete npm-Skripte
-App im Entwicklungsmodus starten
+ ### Frequently used npm scripts
+Launch app in development mode on both client and server side.
 ```
 npm start
 ```
