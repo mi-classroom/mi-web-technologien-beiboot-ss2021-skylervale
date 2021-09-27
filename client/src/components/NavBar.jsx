@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import styled from 'styled-components'
+import React, { Component } from 'react';
+import styled from 'styled-components';
 
-import Logo from './Logo'
+import Logo from './Logo';
 
 const Nav = styled.nav.attrs({
     className: 'navbar navbar-expand-lg navbar-dark bg-dark',

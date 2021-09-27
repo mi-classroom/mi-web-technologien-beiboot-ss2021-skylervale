@@ -1,26 +1,23 @@
-const ExifReader = require('exifreader');
-const fs = require('fs');
+const ExifReader = require('exifr');
+const exiftool = require("exiftool-vendored").exiftool;
+
 const getImageMetadata = async function (req, res) {
     const { imgpath } = req.query;
-    fs.readFile('../client/public/data/'+imgpath, function (error, data) {
-        if (error) {
-            console.error('Error reading file.');
-            res.send('Error reading file.');
-        }
-    
-        try {
-            const tags = ExifReader.load(data, {expanded: true});
-            console.log(tags)
-            res.send(tags)
-        } catch (error) {
-    
-            console.error(error);
-            res.send('Error reading file.');
-        }
-    });
-    
+    console.log(imgpath)
+    ExifReader.parse("data/"+imgpath, true)
+    .then(output => {
+        res.send(output)
+    })   
+}
+
+const setImageMetadata = async function (req, res) {
+    const {params, imgpath} = req.body;
+    console.log("params", params)
+    exiftool.write("data/"+imgpath, params);
+    res.send(params);
 }
 
 module.exports = {
-    getImageMetadata
+    getImageMetadata,
+    setImageMetadata
 }
