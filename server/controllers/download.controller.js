@@ -1,11 +1,8 @@
 const file_system = require('fs');
 const archiver = require('archiver');
 
-
-
 const zipFolder = async function (req, res) {
     const {folderPath} = req.query;
-    console.log(folderPath)
     const output = file_system.createWriteStream('target.zip');
     const archive = archiver('zip');
     output.on('close', function () {
