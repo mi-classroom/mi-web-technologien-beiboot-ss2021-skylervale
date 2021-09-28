@@ -33,7 +33,7 @@ export const useStyles = makeStyles((theme) => ({
     },
     sidebar:{
         width: '20rem',
-        maxHeight: '85vh',
+        maxHeight: '89.4vh',
         overflow: 'auto'
     },
     padding:{

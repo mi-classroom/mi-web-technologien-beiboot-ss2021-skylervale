@@ -64,7 +64,7 @@ export default function App() {
         var filteredResult = root.copied;
 
         depthFirstTraversal(root, function(node, branch) {
-            if( !node.children && node.name.indexOf(searchText) !== -1 ) {
+            if( node.name.indexOf(searchText) !== -1 ) {
                 for(var i = 0, len = branch.length; i < len; i++) {
                     if(branch[i].copied) { continue; } 
 
