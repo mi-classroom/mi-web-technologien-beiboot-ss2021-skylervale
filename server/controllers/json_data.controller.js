@@ -6,7 +6,6 @@ const getJsonData = async function (req, res) {
             console.error('Error reading json file.');
             res.send('Error reading json file.');
         }
-        console.log(data)
         res.send(data)
     });
     

@@ -6,7 +6,6 @@ const zipFolder = async function (req, res) {
     const output = file_system.createWriteStream('target.zip');
     const archive = archiver('zip');
     output.on('close', function () {
-        console.log(archive.pointer() + ' total bytes');
         console.log('archiver has been finalized and the output file descriptor has closed.');
     });
     

@@ -4,7 +4,6 @@ export const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
         padding: "0px",
-        backgroundColor: "#212121",
         color: "#FFCC00",
         backgroundColor:  "#212121",
         display: "flex"
