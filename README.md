@@ -5,7 +5,7 @@ Zum Modul Web Technologien gibt es ein begleitendes Projekt. Im Rahmen dieses Pr
 Als organisatorischen Rahmen für das Projekt nutzen wir GitHub Classroom. Inhaltlich befassen wir uns mit der Entwicklung einer kleinen Web-Anwendung für die Bearbeitung von Bildern. Hierbei steht weniger ein professioneller Konzeptions-, Entwurfs- und Entwicklungsprozess im Vordergrund, sondern vielmehr die sukzessive Weiterentwicklung einer Anwendung, das Ausprobieren, Vergleichen, Refactoren und die Freude an lauffähigem Code.
 
 
-Diese Anwendung kann mit oder ohne Docker verwendet werden.
+This application can be used with or without Docker.
 
 ### Development environment (with Docker)
 If you do not have Docker installed, [install it from here](https://docs.docker.com/get-docker/).
