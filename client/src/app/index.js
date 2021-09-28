@@ -173,14 +173,14 @@ export default function App() {
     return (
         <Router>
             <NavBar />
-            <div className={classes.root} style={{ display:'flex'}}>
-              <div style={{ 'width': '20rem', 'max-height': '85vh', 'overflow': 'auto' }}>
-                  <div className="padding">
+            <div className={classes.root}>
+              <div className={classes.sidebar}>
+                  <div className={classes.padding}>
                       <label>Search:</label>
                       <br></br>
                       <Input className={classes.search} type="text" onChange={(event) =>searchFunction(event.target.value.toLowerCase(), structure)} />
                   </div>
-                  <div className="padding">
+                  <div className={classes.padding}>
                     {filteredData.length > 0 ?
                       <IconButton 
                           edge="start" 
@@ -192,18 +192,15 @@ export default function App() {
                       </IconButton>
                     :""}
                   </div>
-                  <div className="padding">
+                  <div className={classes.padding}>
                       <Tree data={filteredData} toggle={selectElement} />
-                  </div>
-                  <div className="padding">
-                    
                   </div>
                   
               </div>
-              <div style={{ width: '100rem'}}>
+              <div className={classes.mainCard}>
                 <div>
                   {JSON.stringify(jsonData) !== "{}" ? 
-                    <ReactJson src={jsonData} collapsed={2}/>
+                    <div className={classes.jsonView}><ReactJson src={jsonData} collapsed={2}/></div>
                   : ""}
                   {imgpath !== "" ? 
                     <div>

@@ -3,9 +3,11 @@ import { makeStyles } from '@material-ui/core/styles';
 export const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
-        padding: theme.spacing(2),
+        padding: "0px",
         backgroundColor: "#212121",
         color: "#FFCC00",
+        backgroundColor:  "#212121",
+        display: "flex"
     },
     myButton: {
         margin: theme.spacing(1),
@@ -28,5 +30,20 @@ export const useStyles = makeStyles((theme) => ({
     },
     details:{
         color: "rgb(187, 137, 10)" 
+    },
+    sidebar:{
+        width: '20rem',
+        maxHeight: '85vh',
+        overflow: 'auto'
+    },
+    padding:{
+        padding: "3%"
+    },
+    mainCard:{
+        width: "100rem",
+        backgroundColor: "#000"
+    },
+    jsonView:{
+        backgroundColor: "rgb(255 255 255)"
     }
 }), {index: 1});
