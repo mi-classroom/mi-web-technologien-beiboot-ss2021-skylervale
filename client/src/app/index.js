@@ -32,6 +32,7 @@ export default function App() {
 
     var currentPath = [];
 
+    //Start of search/filter functions
     function depthFirstTraversal(o, fn) {
         currentPath.push(o);
         if(o.children) {
@@ -42,7 +43,6 @@ export default function App() {
         fn.call(null, o, currentPath);
         currentPath.pop();
     }
-
     function shallowCopy(o) {
         var result = {};
         for(var k in o) {
@@ -52,13 +52,11 @@ export default function App() {
         }
         return result;
     }
-
     function copyNode(node) {
         var n = shallowCopy(node);
         if(n.children) { n.children = []; }
         return n;
     }
-
     function filterTree(root, searchText) {
         root.copied = copyNode(root);
         var filteredResult = root.copied;
@@ -80,7 +78,6 @@ export default function App() {
 
         return filteredResult;
     }
-
     const searchFunction = async (searchText, list) => {
           var filteredList = [];
           for(var i = 0, len = list.length; i < len; i++) {
@@ -89,9 +86,9 @@ export default function App() {
           setFilteredData(filteredList);
           return filteredList;
     }
+    //End of search/filter functions
 
-
-
+    //Get folder structure (return given folder structure)
     const getStructure = () => {
         axios
             .get(`${path}/tree`, {
@@ -103,6 +100,7 @@ export default function App() {
             })
     }
 
+    //Get and display selected element from folder structure
     const selectElement = (value) => {
       if(value !== ""){
         if(value.indexOf(".json") > 0){
@@ -118,6 +116,7 @@ export default function App() {
       
     }
 
+    //Return json file content
     const getJsonData = (value) => {
         axios
             .get(`${path}/jsondata`, {
@@ -132,6 +131,7 @@ export default function App() {
             })
     }
 
+    //Return selected image metadata
     const getImageData = (value) => {
         axios
             .get(`${path}/imgmetadata`, {
@@ -146,6 +146,7 @@ export default function App() {
             })
     }
 
+    //Write metadata on a selected image
     const saveMetaData = () => {
       axios
           .post(`${path}/updateimgmetadata`, {
@@ -154,6 +155,7 @@ export default function App() {
           })
     }
 
+    //Download folder content as zip file
     const downloadzip = () => {
         axios
             .get(`${path}/download`, {
