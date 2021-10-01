@@ -1,32 +1,20 @@
-const express = require('express')
-const cors = require('cors')
+const express = require('express');
+const path = require("path");
+const cors = require('cors');
+const routes = require('./routes/index.route');
+const bodyParser = require('body-parser');
+const app = express();
+const apiPort = 5000;
 
-const app = express()
-const apiPort = 5000
+app.use(cors());
+app.use(bodyParser.json());
 
-app.use(cors())
-
-//app.use(express.static(__dirname + '../client/public/data'));
-
-//Generate Data folder tree
-const dree = require('dree');
-const options = {
-    stat: false,
-    hash: false,
-    sizeInBytes: false,
-    size: false,
-    normalize: false
-  };
-
-const tree = dree.scan('../client/public/data', options);
-
+app.use("/data/", express.static(path.join(__dirname, "/data")));
 
 app.get('/', (req, res) => {
-    res.send('Welcome to PixtureBox')
+    res.send('Welcome to PixtureBox');
 })
 
-app.get('/tree', (req, res) => {
-    res.send(tree)
-})
+app.use('/', routes);
 
 app.listen(apiPort, () => console.log(`Server running on port ${apiPort}`))

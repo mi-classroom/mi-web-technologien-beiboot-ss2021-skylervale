@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
-import { AiOutlineFile, AiOutlineFolder } from "react-icons/ai";
-import { AiFillFileImage } from "react-icons/ai";
+import { AiOutlineFile, AiOutlineFolder, AiFillFileImage } from "react-icons/ai";
+import { VscJson } from "react-icons/vsc";
 
 const FILE_ICONS = {
-    jpg: <AiFillFileImage />
+    jpg: <AiFillFileImage />,
+    json: <VscJson />
   };
   
   const StyledTree = styled.div`
@@ -35,17 +36,12 @@ const FILE_ICONS = {
   `; 
   
   const File = ({ name, path, toggle }) => {
-    let ext = name.split(".")[2];
+    var re = /(?:\.([^.]+))?$/;
+    let ext = re.exec(name)[1];
     return (
       <StyledFile>
-        {/* render the extension or fallback to generic file icon  */}
         {FILE_ICONS[ext] || <AiOutlineFile />}
-        <span onClick={() => toggle(path) } >{name}</span>
-        {/*toggle === name ? (
-          <>
-            <img src={'./data/' + //path.replace(/\\/g, "/")} alt={toggle}/>
-          </>
-        ) : null*/}
+        <span style={{cursor:'pointer'}} onClick={() => toggle(path.replace(/\\/g, "/")) } >{name}</span>
         
       </StyledFile>
     );
@@ -94,13 +90,13 @@ const FILE_ICONS = {
           }
       });
     }else{
-      return ("No Folder")
+      return ("No result")
     }
   };
   export const Tree = ({ data, toggle }) => {
       return (
           <StyledTree>
-          {data ? <TreeRecursive data={data} toggle={toggle} /> : null}
+            {data ? <TreeRecursive data={data} toggle={toggle} /> : null}
           </StyledTree>
       );
   };

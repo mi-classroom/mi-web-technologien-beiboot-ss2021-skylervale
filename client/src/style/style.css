@@ -1,7 +1,61 @@
-.image {
-    width: 60rem;
+body{
+    background-color: #212121!important;
+    font-size: 0.7rem !important;
+}
+.imagecontainer {
     padding:5%
 }
-.tree {
-    padding: 5%;
+.padding {
+    padding: 3%;
+}
+table{
+    width: 100%;
+}
+table, th, td {
+    border: 1px solid black;
+}
+th{
+    background-color:cadetblue;
+    color: white;
+}
+td{
+    padding: 0.5rem;
+}
+.inputInput {
+    color: 'inherit';
+    padding: (1, 1, 1, 0);
+    padding-Left: "4px";
+    transition: "10px";
+    width: '100%';
+}
+.mybutton{
+    background-color: rgb(187, 137, 10)!important;
+    color: rgb(255, 255, 255);
+    margin: 10px 0px 0px 0px;
+    float: right;
+    width: 50px;
+}
+img {
+    max-height: 37rem;
+    cursor: -webkit-zoom-in;
+}
+.Collapsible{
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    width: inherit;
+    background-color: #434343;
+    padding: 2% 25%;
+    margin: 0% 0%;
+    max-height: 50vh;
+    overflow: auto;
+}
+.MuiInput-underline:before{
+    border-bottom: 1px solid rgb(187, 137, 10) !important;
+}
+.MuiInput-underline:after{
+    border-bottom: 1px solid rgb(187, 137, 10) !important;
+}
+.sc-eCApnc.cbFueE {
+    cursor: pointer;
 }
